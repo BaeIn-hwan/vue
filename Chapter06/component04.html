@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<script src="https://unpkg.com/vue"></script>
+</head>
+<body>
+	<div id="app">
+		<my-component :text="msg"></my-component>
+	</div>
+
+	<script>
+		const component = {
+			template: "<div>안녕, {{text}}</div>",
+			props: ["text"]
+		}
+
+		new Vue({
+			el: "#app",
+			components: {"myComponent": component},
+			data() {
+				return {
+					msg: "부모컴포넌트에서.."
+				}
+			}
+		})
+	</script>
+</body>
+</html>
