@@ -1,0 +1,240 @@
+* {
+  margin: 0;
+  padding: 0;
+  line-height: 1;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+input,
+input[type="button"],
+button {
+  border: 0;
+  border-radius: 0;
+  background: none;
+  vertical-align: middle;
+}
+
+button {
+  cursor: pointer;
+}
+
+img {
+  vertical-align: baseline;
+}
+
+ul, ol {
+  list-style: none;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 400;
+}
+
+em, i {
+  font-style: normal;
+}
+
+.blind {
+  overflow: hidden;
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  clip: rect(1px, 1px, 1px, 1px);
+}
+
+.ih__wrapper {
+  max-width: 750px;
+  margin: 0 auto;
+}
+
+.ih__header {
+  position: relative;
+  max-width: 690px;
+  margin: 0 auto;
+}
+
+.ih__header .logo {
+  font-size: 40px;
+}
+
+.ih__header .today {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  font-size: 28px;
+}
+
+.ih__btn {
+  font-size: 0;
+}
+
+.ih__btn__black {
+  border: 2px solid #000;
+  background: #000;
+  color: #FFF;
+}
+
+.ih__btn__gray {
+  border: 2px solid #666;
+  background: #666;
+  color: #FFF;
+}
+
+.ih__btn__white {
+  border: 2px solid #000;
+  color: #000;
+}
+
+.ih__btn__b {
+  width: 100px;
+  height: 50px;
+  font-size: 18px;
+}
+
+.ih__btn__s {
+  width: 50px;
+  height: 30px;
+  font-size: 14px;
+}
+
+.ih__writing {
+  position: relative;
+  max-width: 690px;
+  margin: 40px auto 0;
+  padding-right: 100px;
+}
+
+.ih__writing__input {
+  width: 100%;
+  height: 50px;
+  border: 2px solid #000;
+  padding: 0 10px;
+  font-size: 18px;
+}
+
+.ih__writing__add {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.ih__state {
+  max-width: 690px;
+  margin: 20px auto;
+}
+
+.ih__state__inner {
+  font-size: 0;
+}
+
+.ih__state__list {
+  display: inline-block;
+  margin-left: 20px;
+  vertical-align: top;
+}
+
+.ih__state__list:first-child {
+  margin-left: 0;
+}
+
+.ih__state__list span {
+  display: inline-block;
+  font-size: 18px;
+  font-weight: 600;
+  vertical-align: bottom;
+}
+
+.ih__state__list em {
+  display: inline-block;
+  margin-left: 5px;
+  font-size: 18px;
+  color: #999;
+  vertical-align: bottom;
+}
+
+.ih__todo {
+  max-width: 690px;
+  margin: 20px auto;
+}
+
+.ih__todo__inner {
+  border-top: 2px solid #000;
+  font-size: 0;
+}
+
+.ih__todo__list {
+  padding: 20px 0;
+  border-bottom: 1px solid #aaa;
+}
+
+.ih__todo__view {
+  position: relative;
+  min-height: 64px;
+  padding-right: 70px;
+}
+
+.ih__todo__view .view__title {
+  display: block;
+}
+
+.ih__todo__view .view__title input + p {
+  font-size: 18px;
+  line-height: 24px;
+  cursor: pointer;
+}
+
+.ih__todo__view .view__title input:checked + p {
+  text-decoration: line-through;
+}
+
+.ih__todo__view .view__date {
+  display: block;
+  margin-top: 10px;
+  font-size: 14px;
+  color: #999;
+}
+
+.ih__todo__view .view__btn {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 70px;
+  text-align: center;
+}
+
+.ih__todo__view .view__btn button {
+  margin-top: 4px;
+}
+
+.ih__todo__view .view__btn button:first-child {
+  margin-top: 0;
+}
+
+.ih__todo__update {
+  position: relative;
+  padding-right: 200px;
+}
+
+.ih__todo__update .update__input {
+  width: 100%;
+  height: 50px;
+  border: 2px solid #000;
+  padding: 0 10px;
+  font-size: 18px;
+}
+
+.ih__todo__update .update__btn {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 200px;
+}
+
+.ih .empty-list p {
+  padding: 150px 0;
+  border-bottom: 1px solid #aaa;
+  font-size: 20px;
+  text-align: center;
+}
+/*# sourceMappingURL=index.css.map */

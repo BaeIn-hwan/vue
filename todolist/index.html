@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/index.css">
+</head>
+
+<body class="ih">
+    <div id="wrapper" class="ih__wrapper">
+        <header id="header" class="ih__header">
+            <h1 class="logo">TODOLIST</h1>
+            <span class="today">{{today}}</span>
+        </header>
+
+        <main id="container" class="ih__container">
+            <div class="content" class="ih__content">
+                <template>
+                    <div class="ih__writing">
+                        <input type="text" class="ih__writing__input" placeholder="텍스트를 입력하세요." v-model="createText" @keyup.enter="createTodoList">
+                        <button type="button" class="ih__writing__add ih__btn__black ih__btn__b" @click="createTodoList">추가</button>
+                    </div>
+
+                    <div class="ih__state">
+                        <ul class="ih__state__inner">
+                            <li class="ih__state__list">
+                                <span>전체</span>
+                                <em>{{todoCounter.all}}</em>
+                            </li>
+
+                            <li class="ih__state__list">
+                                <span>진행중</span>
+                                <em>{{todoCounter.ing}}</em>
+                            </li>
+
+                            <li class="ih__state__list">
+                                <span>진행완료</span>
+                                <em>{{todoCounter.end}}</em>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="ih__todo">
+                        <ul class="ih__todo__inner">
+                            <template v-if="todoList && todoList.length">
+                                <li class="ih__todo__list" v-for="(todo, index) in todoList" :key="index">
+                                    <div class="ih__todo__view view" v-show="!todo.updateView">
+                                        <div class="view">
+                                            <label class="view__title">
+                                                <input type="checkbox" class="blind" :value="'list'+ index" @change="chnageClearFlag(index, $event)">
+                                                <p>{{todo.txt}}</p>
+                                            </label>
+                                            <span class="view__date">{{todo.date}}</span>
+                                        </div>
+        
+                                        <div class="view__btn ih__btn">
+                                            <button type="button" class="view__btn__update ih__btn__black ih__btn__s" @click="chnageView(index, $event);">수정</button>
+                                            <button type="button" class="view__btn__delete ih__btn__gray ih__btn__s" @click="deleteTodoList(index, $event);">삭제</button>
+                                        </div>
+                                    </div>
+        
+                                    <div class="ih__todo__update update" v-show="todo.updateView">
+                                        <input type="text" class="update__input" :value="todo.txt" ref="update__input" @keyup.enter="updateTodoList(index, $event);">
+                                        <div class="update__btn ih__btn">
+                                            <button type="button" class="update__btn__update ih__btn__black ih__btn__b" @click="updateTodoList(index, $event);">수정</button>
+                                            <button type="button" class="update__btn__cancel ih__btn__white ih__btn__b" @click="chnageView(index, $event);">취소</button>
+                                        </div>
+                                    </div>
+                                </li>
+                            </template>
+                            <template v-else>
+                                <li class="empty-list">
+                                    <p>리스트가 없습니다.</p>
+                                </li>
+                            </template>
+                        </ul>
+                    </div>
+                </template>
+            </div>
+        </main>
+    </div>
+
+    <script src="https://unpkg.com/vue"></script>
+    <script src="./js/index.js"></script>
+</body>
+
+</html>
