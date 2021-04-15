@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/app.css">
+</head>
+
+<body>
+    <div id="wrapper" :class="'theme__'+ pointColor">
+        <header id="header">
+            <h1 class="logo">
+                <a href="#"><img src="./images/header/logo.png" alt=""></a>
+            </h1>
+
+            <nav class="gnb">
+                <ul class="gnb__inner">
+                    <li class="gnb__list" v-for="(gnb, index) in gnbList">
+                        <a :href="gnb.depthLink" class="gnb__list__link">{{gnb.depthName}}</a>
+                    </li>
+                </ul>
+            </nav>
+
+            <div class="utilMenu">
+                <div class="colorChip">
+                    <ul class="colorChip__inner">
+                        <li class="colorChip__list" v-for="(color, index) in colorChip">
+                            <label>
+                                <input type="radio" class="blind" :value="color.colorChipEng" v-model="pointColor">
+                                <span :class="'theme__'+ color.colorChipEng +'__bg'"></span>
+                            </label>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </header>
+
+        <main id="container">
+            <article id="content">
+                컨텐츠
+            </article>
+        </main>
+
+        <footer id="footer">
+            푸터
+        </footer>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="./js/index.js"></script>
+
+    <script>
+
+        function add(i) {
+            if (i == 9) {
+                return i;
+            } else {
+                return i % 2 == 0 ? i + add(i + 1) : add(i + 1);
+                // return i % 2 != 0 ? i + add(i + 1) : add(i + 1);
+                // return i + add(i + 1);
+            }
+        }
+
+        console.log(add(1));
+    </script>
+</body>
+</html>

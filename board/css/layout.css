@@ -1,0 +1,121 @@
+html, body {
+  height: 100%;
+  font-family: "Noto Sans KR", sans-serif;
+}
+
+#wrapper {
+  height: 100%;
+}
+
+#wrapper #header {
+  position: relative;
+  z-index: 10;
+  height: 60px;
+  padding: 0 15px;
+  border-bottom: 2px solid #000;
+  font-size: 0;
+  color: #fff;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+#wrapper #header .logo {
+  display: inline-block;
+  width: 35px;
+  line-height: 58px;
+  font-size: 0;
+  vertical-align: middle;
+}
+
+#wrapper #header .logo a {
+  display: block;
+}
+
+#wrapper #header .gnb {
+  display: inline-block;
+  margin-left: 100px;
+  vertical-align: middle;
+}
+
+#wrapper #header .gnb__inner {
+  font-size: 0;
+}
+
+#wrapper #header .gnb__list {
+  display: inline-block;
+  width: 140px;
+  margin-left: -1px;
+  vertical-align: top;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+#wrapper #header .gnb__list:first-child {
+  margin-left: 0;
+}
+
+#wrapper #header .gnb__list__link {
+  display: block;
+  width: 100%;
+  height: 58px;
+  border-left: 1px solid #CCC;
+  border-right: 1px solid #CCC;
+  font-size: 16px;
+  line-height: 58px;
+  text-align: center;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  -webkit-transition: background 0.35s;
+  transition: background 0.35s;
+}
+
+#wrapper #header .gnb__list__link:hover {
+  background: #EEE;
+}
+
+#wrapper #header .utilMenu {
+  float: right;
+  margin-top: 15px;
+}
+
+#wrapper #header .colorChip__list {
+  display: inline-block;
+  width: 30px;
+  margin-left: 5px;
+  vertical-align: top;
+}
+
+#wrapper #header .colorChip__list:first-child {
+  margin-left: 0;
+}
+
+#wrapper #header .colorChip__list label input + span {
+  display: block;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+#wrapper #header .colorChip__list label input:checked + span {
+  border: 2px solid #FFF;
+}
+
+#wrapper #container {
+  min-height: 100%;
+  margin: -60px 0 -100px;
+}
+
+#wrapper #content {
+  padding: 60px 0 100px;
+}
+
+#wrapper #footer {
+  position: relative;
+  z-index: 10;
+  height: 100px;
+  background: #000;
+  color: #fff;
+}
+/*# sourceMappingURL=layout.css.map */
