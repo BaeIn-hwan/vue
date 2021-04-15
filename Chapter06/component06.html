@@ -9,6 +9,63 @@
 </head>
 <body>
 	<div id="app">
+		<my-component :my-info="message"></my-component>
+	</div>
+
+	<script>
+		// const MyComponent = {
+		// 	template: `
+		// 		<div>
+		// 			<p>inline-template - {{myInfo}}</p>
+		// 		</div>
+		// 	`,
+		// 	props: ['myInfo']
+		// };
+
+		// new Vue({
+		// 	el: "#app",
+		// 	components: {'my-component': MyComponent},
+		// 	data() {
+		// 		return {
+		// 			message: "안녕"
+		// 		}
+		// 	}
+		// });
+
+		Vue.component("my-component", {
+			template: `
+				<div>
+					<p>inline-template - {{myInfo}}</p>
+				</div>
+			`,
+			props: ['myInfo']
+		});
+
+		new Vue({
+			el: "#app",
+			// components: {'my-component': MyComponent},
+			data() {
+				return {
+					message: "테스트입니다."
+				}
+			}
+		});
+	</script>
+
+
+</body>
+</html>
+<!-- <!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<script src="https://unpkg.com/vue"></script>
+</head>
+<body>
+	<div id="app">
 		<my-component :my-info="message" inline-template>
 			<template>
 				<p>
@@ -34,4 +91,4 @@
 		})
 	</script>
 </body>
-</html>
+</html> -->

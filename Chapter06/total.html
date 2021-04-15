@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue"></script>
+</head>
+
+<body>
+    <div id="app">
+        <p>1. 컴포넌트 기본</p>
+
+        <default-component></default-component>
+        <default-component></default-component>
+        <default-component></default-component>
+
+        <p>2. 컴포넌트 이벤트</p>
+
+        <default01-component></default01-component>
+        <default01-component></default01-component>
+        <default01-component></default01-component>
+
+        <p>3. props</p>
+
+        <hello-component hello-txt="안녕하세요."></hello-component>
+        <hello-component hello-txt="HELLO"></hello-component>
+        <hello-component hello-txt="おはよう"></hello-component><br>
+
+        <!-- html & component -->
+        <input type="text" v-model="inputText">
+        <input-component :input-text="inputText"></input-component>
+
+        <!-- component & component -->
+        <input01-component></input01-component>
+
+        <p>4. event</p>
+        <!-- html & component -->
+        <div>
+            <event-component @button-test="clickEvent"></event-component>
+            <div>{{eventText}}</div>
+        </div>
+
+        <!-- component & component -->
+        <event02-parent-component></event02-parent-component>
+
+        <p>5. eventBus</p>
+        <eventbus-parent-component></eventbus-parent-component>
+    </div>
+
+    <script>
+        // 컴포넌트 선언 시, HTML 영역은 대시, js 컴포넌트 선언 시 카멜
+
+        /*
+            1. 컴포넌트 기본
+        */
+        Vue.component("defaultComponent", {
+            template: `
+                <div>{{msg}}</div>
+            `,
+            data() {
+                return {
+                    msg: "컴포넌트 기초"
+                }
+            }
+        });
+
+
+        /*
+            2. 컴포넌트 이벤트
+                data() { return { } } 사용이유
+                - 동일한 컴포넌트가 여러 번 사용되더라도 동일한 객체를 가리키는 것이 아니라 함수가 호출될 때마다 만들어진 객체가 리턴되기 때문이다.
+        */
+        Vue.component("default01Component", {
+            template: `
+                <button type="button" @click.prevent="clickUp">{{counter}}</button>
+            `,
+            data() {
+                return {
+                    counter : 0,
+                }
+            },
+            methods: {
+                clickUp() {
+                    this.counter++;
+                }
+            }
+        });
+
+
+        /*
+            3. props
+        */
+        Vue.component("helloComponent", {
+            template: `
+                <div>{{helloTxt}}</div>
+            `,
+            props: ["helloTxt"],
+        });
+
+        // html & component
+        Vue.component("inputComponent", {
+            template: `
+                <div>{{inputText}}</div>
+            `,
+            props: ["inputText"],
+        });
+
+        // component & component
+        Vue.component("input01Component", {
+            template: `
+                <div>
+                    <input type="text" v-model="infoText">
+                    <input02-component :info-txt="infoText"></input02-component>
+                </div>
+            `,
+            data() {
+                return {
+                    infoText: "입력하세세세."
+                }
+            }
+        });
+
+        Vue.component("input02Component", {
+            template: `
+                <div>{{infoTxt}}</div>
+            `,
+            props: ["infoTxt"],
+        });
+
+
+        /*
+            4. event
+        */
+        // html & component
+        Vue.component("eventComponent", {
+            template: `
+                <button type="button" @click="msgClick">{{msg}}</button>
+            `,
+            data() {
+                return {
+                    msg: "↓누르면 아래 텍스트 변함",
+                }
+            },
+            methods: {
+                msgClick(e) {
+                    this.$emit('button-test', "바꼈다.");
+                }
+            }
+        });
+      
+        // component & component
+        Vue.component("event02ParentComponent", {
+            template: `
+                <div>
+                    <event02-child-component @button-test02="abc"></event02-child-component>
+                    <div>{{msg}}</div>
+                </div>
+            `,
+            data() {
+                return {
+                    msg: "-",
+                }
+            },
+            methods: {
+                abc(obj) {
+                    this.msg = obj;
+                }
+            }
+        });
+
+        Vue.component("event02ChildComponent", {
+            template: `
+                <button type="button" @click="eventClick">누르면 바뀔꺼야</button>
+            `,
+            methods: {
+                eventClick(e) {
+                    this.$emit("button-test02", {
+                        name: '홍길동',
+                        age: '31',
+                    });
+                }
+            }
+        });
+
+        /*
+            5. eventBus
+            이벤트 버스는 아래 명령어 사용
+        */
+        const eventBus = new Vue();
+
+        Vue.component("eventbus01Component", {
+            template: `
+                <div>
+                    <button type="button" @click="couterPlus">{{counter}}</button>
+                </div>
+            `,
+            data() {
+                return {
+                    counter: 0,
+                }
+            },
+            created() {
+                eventBus.$on('couterMinus', this.minusClick);
+            },
+            
+            methods: {
+                minusClick(idx) {
+                    this.counter = idx;
+                },
+                couterPlus() {
+                    this.counter++;
+                    eventBus.$emit("couterPlus", this.counter);
+                }
+            }
+        });
+
+        Vue.component("eventbus02Component", {
+            template: `
+                <div>
+                    <button type="button" @click="couterMinus">{{counter}}</button>
+                </div>
+            `,
+            data() {
+                return {
+                    counter: 0,
+                }
+            },
+            created() {
+                eventBus.$on('couterPlus', this.plusClick);
+            },
+            
+            methods: {
+                plusClick(idx) {
+                    this.counter = idx;
+                },
+                couterMinus() {
+                    this.counter--;
+                    eventBus.$emit("couterMinus", this.counter);
+                }
+            }
+        });
+
+        Vue.component("eventbusParentComponent", {
+            template: `
+                <div>
+                    <eventbus01-component></eventbus01-component>
+                    <eventbus02-component></eventbus02-component>
+                </div>
+            `,
+        });
+
+        new Vue({
+            el: "#app",
+            data() {
+                return {
+                    inputText: "텍스트를 입력해주세요.",
+                    eventText: "-",
+                }
+            },
+            methods: {
+                clickEvent(a, b) {
+                    this.eventText = a;
+                }
+            }
+        });
+    </script>
+
+    <div id="app02">
+
+    </div>
+</body>
+
+</html>
