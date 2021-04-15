@@ -1,7 +1,7 @@
 var app = new Vue({
     el: '#wrapper',
     data: {
-        pointColor: "blue",
+        pointColor: "#205FB4",
         gnbList: [{
             "depthName": "메뉴01",
             "depthLink": "#"

@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="ko">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,10 +7,9 @@
     <title>Document</title>
     <link rel="stylesheet" href="./css/app.css">
 </head>
-
 <body>
-    <div id="wrapper" :class="'theme__'+ pointColor">
-        <header id="header">
+    <div id="wrapper">
+        <header id="header" :style="'border-bottom: 2px solid'+ pointColor">
             <h1 class="logo">
                 <a href="#"><img src="./images/header/logo.png" alt=""></a>
             </h1>
@@ -29,8 +27,8 @@
                     <ul class="colorChip__inner">
                         <li class="colorChip__list" v-for="(color, index) in colorChip">
                             <label>
-                                <input type="radio" class="blind" :value="color.colorChipEng" v-model="pointColor">
-                                <span :class="'theme__'+ color.colorChipEng +'__bg'"></span>
+                                <input type="radio" class="blind" :value="color.colorChipCode" v-model="pointColor">
+                                <span :style="'background: '+ color.colorChipCode"></span>
                             </label>
                         </li>
                     </ul>
@@ -51,20 +49,5 @@
 
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="./js/index.js"></script>
-
-    <script>
-
-        function add(i) {
-            if (i == 9) {
-                return i;
-            } else {
-                return i % 2 == 0 ? i + add(i + 1) : add(i + 1);
-                // return i % 2 != 0 ? i + add(i + 1) : add(i + 1);
-                // return i + add(i + 1);
-            }
-        }
-
-        console.log(add(1));
-    </script>
 </body>
 </html>

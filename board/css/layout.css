@@ -99,7 +99,7 @@ html, body {
 }
 
 #wrapper #header .colorChip__list label input:checked + span {
-  border: 2px solid #FFF;
+  border: 2px solid #000;
 }
 
 #wrapper #container {
