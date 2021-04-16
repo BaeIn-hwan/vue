@@ -11,16 +11,64 @@
 
 <body>
     <div id="app">
-        <button type="submit">
-            <slot>Submit</slot>
-        </button>
+        <alert-component :is-open="" v-if="alert.first.show">
+            <template v-slot:default>
+                <div>alert01</div>
+            </template>
+        </alert-component>
+
+        <alert-component v-if="alert.second.show">
+            <template v-slot:default>
+                <div>alert02</div>
+            </template>
+        </alert-component>
+
+        <button type="button" @click="alert.first.show ? alert.first.show = false : alert.first.show = true">버튼01</button>
+        <button type="button" @click="alert.second.show ? alert.second.show = false : alert.second.show = true">버튼02</button>
     </div>
 
     <script>
+        Vue.component("alertComponent", {
+            template: `
+                <div>
+                    <slot></slot>
+                </div>
+            `,
+            data() {
+                return {
+                    name: "balmostory"
+                }
+            },
+            props: {
+                title:{
+                    type: String,
+                    default: "delfault title",
+                    required: false
+                }
+            },
+            methods:{
+                updateName() {
+                    this.name = "balmostory updated";
+                    console.log(this.$root)
+                }
+            }
+        });
+
         new Vue({
             el: "#app",
+            data() {
+                return {
+                    alert: {
+                        first: {
+                            show: false,
+                        },
+                        second: {
+                            show: false,
+                        }
+                    }
+                }
+            },
         });
     </script>
-
 </body>
 </html>

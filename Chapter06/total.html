@@ -239,6 +239,7 @@
                 couterMinus() {
                     this.counter--;
                     eventBus.$emit("couterMinus", this.counter);
+                    console.log(this.$root)
                 }
             }
         });
